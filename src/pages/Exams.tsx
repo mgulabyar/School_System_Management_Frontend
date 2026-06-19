@@ -73,6 +73,7 @@ export const Exams: React.FC = () => {
   const theme = useTheme();
   const [activeTab, setActiveTab] = useState(0);
 
+  const isMobileView = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [classes, setClasses] = useState<ClassData[]>([]);
   const [students, setStudents] = useState<StudentData[]>([]);
