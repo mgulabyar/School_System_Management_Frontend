@@ -114,7 +114,7 @@ export const Academic: React.FC = () => {
 
       console.error("--- ACADEMIC PAGE FETCH CLASSES FAILED ---");
       console.error(err);
-      console.error("-------------------------------");
+      console.error("-----------------------------------------");
     }
   }, [setError]);
 
