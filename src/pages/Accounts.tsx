@@ -65,7 +65,7 @@ export const Accounts: React.FC = () => {
   const [toastSeverity, setToastSeverity] = useState<"success" | "error">(
     "success",
   );
-//////////////////// use state is a base of react logic
+//////////////////// use 
   const [type, setType] = useState<"Income" | "Expense" | "">("");
   const [category, setCategory] = useState("");
   const [amount, setAmount] = useState("");
