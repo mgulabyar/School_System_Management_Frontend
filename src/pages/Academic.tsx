@@ -57,6 +57,7 @@ interface SubjectData {
   };
 }
 
+/// asfand sab
 export const Academic: React.FC = () => {
   const { mode } = useCustomTheme();
   const [activeTab, setActiveTab] = useState(0);
