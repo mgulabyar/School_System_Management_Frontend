@@ -38,7 +38,6 @@ import { useCustomTheme } from "../context/ThemeContext";
 import { Link, useLocation } from "react-router-dom";
 
 const DRAWER_WIDTH = 260;
-// asdf
 const getAppBarStyles = (mode: string) => ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   zIndex: (theme: any) => theme.zIndex.drawer + 1,
