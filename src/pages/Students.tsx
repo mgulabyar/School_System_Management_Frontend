@@ -49,7 +49,7 @@ interface Section {
   _id: string;
   name: string;
 }
-
+// i bult this file studnets management logic like add students remvoe update etc.
 interface ClassData {
   _id: string;
   name: string;
