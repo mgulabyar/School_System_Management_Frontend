@@ -47,7 +47,6 @@ interface Section {
   _id: string;
   name: string;
 }
-// interface setion 
 interface ClassData {
   _id: string;
   name: string;
