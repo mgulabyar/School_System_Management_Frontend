@@ -111,7 +111,6 @@ export const Attendance: React.FC = () => {
   const [teachersList, setTeachersList] = useState<TeacherData[]>([]);
   const [availableSections, setAvailableSections] = useState<Section[]>([]);
   const [loading, setLoading] = useState(true);
-////////////// loading set loading use ttatks true bydefault
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastSeverity, setToastSeverity] = useState<"success" | "error">(
