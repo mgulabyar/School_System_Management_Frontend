@@ -217,15 +217,15 @@ export const getDesignTokens = (mode: PaletteMode) => ({
             contrastText: '#121212',
           },
           background: {
-            default: '#171717', // Deeper, more consistent dark background
-            paper: '#212121',  // Slightly lighter for cards/surfaces
+            default: '#171717',
+            paper: '#212121',  
           },
           text: {
-            primary: '#E0E0E0',  // Light grey for primary text
-            secondary: '#A0A0A0', // Muted light grey for secondary
+            primary: '#E0E0E0',  
+            secondary: '#A0A0A0',
             disabled: '#616161',
           },
-          divider: '#373737', // Clearer divider in dark mode
+          divider: '#373737',
           error: {
             main: '#EA5D54',
             light: '#F8A8A3',
