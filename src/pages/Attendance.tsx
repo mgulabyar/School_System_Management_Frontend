@@ -116,7 +116,7 @@ export const Attendance: React.FC = () => {
   const [toastSeverity, setToastSeverity] = useState<"success" | "error">(
     "success",
   );
-
+//  addacne logic will be complete in 2 to 3 days
   const [classId, setClassId] = useState("");
   const [sectionId, setSectionId] = useState("");
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
