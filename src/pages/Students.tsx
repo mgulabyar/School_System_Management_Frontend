@@ -49,7 +49,6 @@ interface Section {
   _id: string;
   name: string;
 }
-// i bult this
 interface ClassData {
   _id: string;
   name: string;
