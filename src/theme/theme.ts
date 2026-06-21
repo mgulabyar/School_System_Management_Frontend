@@ -158,7 +158,6 @@ export const getDesignTokens = (mode: PaletteMode) => ({
     mode,
     ...(mode === 'light'
       ? {
-          // --- Refined Light Mode Palette (Professional Blues) ---
           primary: {
             main: '#1A73E8',
             light: '#629FFC',
