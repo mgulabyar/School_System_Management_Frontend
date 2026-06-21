@@ -307,7 +307,8 @@ export const Exams: React.FC = () => {
       setToastOpen(true);
       return;
     }
-
+// handleLoad MaritList = async () => {
+}
     try {
       setMeritLoading(true);
       const res = await getMeritList(meritExamId);
