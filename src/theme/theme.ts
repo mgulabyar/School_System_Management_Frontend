@@ -163,7 +163,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
             main: '#1A73E8', // A more vibrant and professional Google-like blue
             light: '#629FFC',
             dark: '#145CBF',
-            contrastText: '#FFFFFF', // Ensures good contrast
+            contrastText: '#FFFFFF',
           },
           secondary: {
             main: '#00B0FF', 
