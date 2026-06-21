@@ -172,15 +172,15 @@ export const getDesignTokens = (mode: PaletteMode) => ({
             contrastText: '#FFFFFF',
           },
           background: {
-            default: '#F8F9FA', // A soft, clean light grey background
-            paper: '#FFFFFF',  // Pure white for elevated surfaces
+            default: '#F8F9FA',
+            paper: '#FFFFFF',  
           },
           text: {
-            primary: '#202124', // Dark grey for excellent readability
-            secondary: '#5F6368', // Muted grey for secondary text
+            primary: '#202124', 
+            secondary: '#5F6368',
             disabled: '#9AA0A6',
           },
-          divider: '#E0E0E0', // Softer divider for light mode
+          divider: '#E0E0E0',
           error: {
             main: '#D93025',
             light: '#F28B82',
@@ -203,15 +203,14 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           },
         }
       : {
-          // --- Refined Dark Mode Palette (Professional Dark Blues) ---
           primary: {
-            main: '#8AB4F8', // Lighter blue for dark mode visibility
+            main: '#8AB4F8', 
             light: '#C4D7FA',
             dark: '#4285F4',
-            contrastText: '#121212', // Dark text on light primary for dark mode
+            contrastText: '#121212',
           },
           secondary: {
-            main: '#78E8FA', // Light cyan for accent in dark mode
+            main: '#78E8FA',
             light: '#B2F0FA',
             dark: '#35C2E0',
             contrastText: '#121212',
