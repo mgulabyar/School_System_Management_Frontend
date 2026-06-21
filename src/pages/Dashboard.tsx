@@ -28,7 +28,6 @@ interface FeesSummary {
   collected: number;
   pending: number;
 }
-/////////////////// everythign up-to-date insided of your rempstory
 interface DashboardData {
   schoolOverview: OverviewMetrics;
   todayAttendance: AttendanceStats;
