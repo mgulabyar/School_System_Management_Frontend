@@ -37,7 +37,8 @@ import { useAuth } from "../context/AuthContext";
 import { useCustomTheme } from "../context/ThemeContext";
 import { Link, useLocation } from "react-router-dom";
 
-const DRAWER_WIDTH = 260;
+const DRAWER_WIDTH = 290;
+
 const getAppBarStyles = (mode: string) => ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   zIndex: (theme: any) => theme.zIndex.drawer + 1,
