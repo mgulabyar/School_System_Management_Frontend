@@ -166,7 +166,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
             contrastText: '#FFFFFF', // Ensures good contrast
           },
           secondary: {
-            main: '#00B0FF', // A bright, clean accent blue
+            main: '#00B0FF', 
             light: '#40C4FF',
             dark: '#0091EA',
             contrastText: '#FFFFFF',
