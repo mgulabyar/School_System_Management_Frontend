@@ -162,9 +162,9 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           success: { main: '#16A34A', light: '#22C55E', dark: '#14532D' },
           warning: { main: '#D97706', light: '#F59E0B', dark: '#78350F' },
           info: { main: '#2563EB', light: '#3B82F6', dark: '#1D4ED8' },
-          action: { // Added action palette for consistent hover/active states
-            hover: 'rgba(30, 58, 138, 0.04)', // Light primary hover
-            selected: 'rgba(30, 58, 138, 0.08)', // Light primary selected
+          action: {
+            hover: 'rgba(30, 58, 138, 0.04)',
+            selected: 'rgba(30, 58, 138, 0.08)',
             disabled: '#E2E8F0',
             disabledBackground: '#F1F5F9',
           },
@@ -196,9 +196,9 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           success: { main: '#4ADE80', light: '#86EFAC', dark: '#14532D' },
           warning: { main: '#FBBF24', light: '#FDE68A', dark: '#78350F' },
           info: { main: '#60A5FA', light: '#93C5FD', dark: '#1D4ED8' },
-          action: { // Added action palette for consistent hover/active states
-            hover: 'rgba(96, 165, 250, 0.08)', // Dark primary hover
-            selected: 'rgba(96, 165, 250, 0.16)', // Dark primary selected
+          action: { 
+            hover: 'rgba(96, 165, 250, 0.08)',
+            selected: 'rgba(96, 165, 250, 0.16)', 
             disabled: '#334155',
             disabledBackground: '#1F2937',
           },
@@ -206,15 +206,15 @@ export const getDesignTokens = (mode: PaletteMode) => ({
   },
   typography: {
     fontFamily: '"Inter", "Roboto", "Arial", sans-serif',
-    h1: { fontSize: '2.5rem', fontWeight: 800, letterSpacing: '-0.04em' }, // Adjusted for stronger headings
+    h1: { fontSize: '2.5rem', fontWeight: 800, letterSpacing: '-0.04em' }, 
     h2: { fontSize: '2rem', fontWeight: 800, letterSpacing: '-0.02em' },
     h3: { fontSize: '1.75rem', fontWeight: 700 },
-    h4: { fontSize: '1.5rem', fontWeight: 700 }, // Added h4
-    h5: { fontSize: '1.25rem', fontWeight: 600 }, // Added h5
-    h6: { fontSize: '1.1rem', fontWeight: 600, lineHeight: 1.4 }, // Slightly larger for sub-headings
-    subtitle1: { fontSize: '1rem', fontWeight: 500 }, // For sidebar section titles
-    body1: { fontSize: '0.95rem', fontWeight: 500, lineHeight: 1.6 }, // Increased for main text readability (like YouTube links)
-    body2: { fontSize: '0.85rem', fontWeight: 400, lineHeight: 1.5 }, // Slightly larger for detail text
+    h4: { fontSize: '1.5rem', fontWeight: 700 }, 
+    h5: { fontSize: '1.25rem', fontWeight: 600 }, 
+    h6: { fontSize: '1.1rem', fontWeight: 600, lineHeight: 1.4 },
+    subtitle1: { fontSize: '1rem', fontWeight: 500 }, 
+    body1: { fontSize: '0.95rem', fontWeight: 500, lineHeight: 1.6 }, 
+    body2: { fontSize: '0.85rem', fontWeight: 400, lineHeight: 1.5 }, 
     button: { textTransform: 'none' as const, fontWeight: 600, letterSpacing: '0.01em' },
     caption: { fontSize: '0.75rem', fontWeight: 400, lineHeight: 1.4 },
   },
@@ -266,7 +266,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
         },
       },
     },
-    MuiAppBar: { // Custom styling for AppBar
+    MuiAppBar: { 
       styleOverrides: {
         root: {
           boxShadow: 'none',
@@ -278,7 +278,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
         },
       },
     },
-    MuiDrawer: { // Custom styling for Drawer
+    MuiDrawer: { 
       styleOverrides: {
         paper: {
           borderRight: '1px solid',
@@ -287,58 +287,58 @@ export const getDesignTokens = (mode: PaletteMode) => ({
         },
       },
     },
-    MuiListItemButton: { // Custom styling for List Item Buttons
+    MuiListItemButton: { 
       styleOverrides: {
         root: {
-          borderRadius: '8px', // Slightly larger border-radius
-          margin: '4px 12px', // Adjusted horizontal margin for better spacing
-          padding: '8px 16px', // Adjusted padding
+          borderRadius: '8px',
+          margin: '4px 12px', 
+          padding: '8px 16px', 
           '&:hover': {
-            backgroundColor: mode === 'light' ? 'action.hover' : 'action.hover', // Use action.hover from palette
+            backgroundColor: mode === 'light' ? 'action.hover' : 'action.hover',
           },
           '&.Mui-selected': {
-            backgroundColor: mode === 'light' ? 'action.selected' : 'action.selected', // Use action.selected
-            color: mode === 'light' ? 'primary.main' : 'primary.light', // Active item text color
+            backgroundColor: mode === 'light' ? 'action.selected' : 'action.selected',
+            color: mode === 'light' ? 'primary.main' : 'primary.light', 
             '& .MuiListItemIcon-root': {
-              color: mode === 'light' ? 'primary.main' : 'primary.light', // Active item icon color
+              color: mode === 'light' ? 'primary.main' : 'primary.light',
             },
           },
         },
       },
     },
-    MuiListItemIcon: { // Custom styling for List Item Icons
+    MuiListItemIcon: { 
       styleOverrides: {
         root: {
-          minWidth: 36, // Slightly reduced minWidth for icons
-          color: 'text.secondary', // Default icon color
+          minWidth: 36, 
+          color: 'text.secondary',
           transition: 'color 0.2s ease-in-out',
         },
       },
     },
-    MuiListItemText: { // Custom styling for List Item Text
+    MuiListItemText: {
       styleOverrides: {
         primary: {
           fontFamily: '"Inter", "Roboto", "Arial", sans-serif',
-          fontWeight: 500, // Default font weight for sidebar items
-          fontSize: '0.95rem', // Default font size
+          fontWeight: 500,
+          fontSize: '0.95rem', 
           letterSpacing: '0.01em',
         },
       },
     },
-    MuiTypography: { // Global Typography overrides for sidebar section headers
+    MuiTypography: {
       variants: [
         {
           props: { variant: 'subtitle1' },
           style: {
-            fontWeight: 700, // YouTube-like section header bold
+            fontWeight: 700, 
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
             color: 'text.secondary',
-            fontSize: '0.75rem', // Smaller section header text
-            padding: '8px 16px 4px 16px', // Specific padding for section headers
+            fontSize: '0.75rem',
+            padding: '8px 16px 4px 16px', 
             '@media (min-width:900px)': {
               fontSize: '0.8rem',
-              padding: '12px 24px 8px 24px', // Desktop padding
+              padding: '12px 24px 8px 24px', 
             },
           },
         },

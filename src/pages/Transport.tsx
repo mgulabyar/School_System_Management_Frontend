@@ -58,42 +58,35 @@ export const Transport: React.FC = () => {
   const { mode } = useCustomTheme();
   const [activeTab, setActiveTab] = useState(0);
 
-  // Core Data Lists
   const [vehicles, setVehicles] = useState<VehicleData[]>([]);
   const [routes, setRoutes] = useState<RouteData[]>([]);
   const [students, setStudents] = useState<StudentData[]>([]);
   const [allocations, setAllocations] = useState<AllocationRecord[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Floating Toast Notification States
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [toastSeverity, setToastSeverity] = useState<'success' | 'error'>('success');
 
-  // Form Inputs (Add Vehicle) [1]
   const [vehicleNo, setVehicleNo] = useState('');
   const [registrationNo, setRegistrationNo] = useState('');
   const [driverName, setDriverName] = useState('');
   const [driverPhone, setDriverPhone] = useState('');
   const [capacity, setCapacity] = useState('');
 
-  // Form Inputs (Create Route) [1]
   const [routeName, setRouteName] = useState('');
   const [routeCost, setRouteCost] = useState('');
-  const [stopsText, setStopsText] = useState(''); // Comma-separated stop names
+  const [stopsText, setStopsText] = useState(''); 
 
-  // Form Inputs (Allocate Transport) [1]
   const [selectedStudentId, setSelectedStudentId] = useState('');
   const [selectedRouteId, setSelectedRouteId] = useState('');
   const [selectedVehicleId, setSelectedVehicleId] = useState('');
 
-  // Interactive Button Loading States
   const [addVehicleLoading, setAddVehicleLoading] = useState(false);
   const [createRouteLoading, setCreateRouteLoading] = useState(false);
   const [allocateLoading, setAllocateLoading] = useState(false);
   const [cancelLoadingId, setCancelLoadingId] = useState<string | null>(null);
 
-  // Load baseline vehicles, routes, active students, and allocations [1]
   const loadBaselineData = useCallback(async () => {
     try {
       setLoading(true);
@@ -106,7 +99,6 @@ export const Transport: React.FC = () => {
       setRoutes(resRoutes.data);
       setAllocations(resAllocations.data);
       
-      // Filter only active students [1]
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       setStudents(resStudents.data.filter((s: any) => s.status === 'Active'));
       setLoading(false);
@@ -170,7 +162,6 @@ export const Transport: React.FC = () => {
     }, 2000);
   };
 
-  // Handle Create Route with 2s Delay [1]
   const handleCreateRoute = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -183,7 +174,6 @@ export const Transport: React.FC = () => {
 
     setCreateRouteLoading(true);
 
-    // Convert comma-separated string to clean trimmed array
     const stopsArray = stopsText.split(',').map(s => s.trim()).filter(Boolean);
 
     setTimeout(async () => {
@@ -202,7 +192,7 @@ export const Transport: React.FC = () => {
         setRouteCost('');
         setStopsText('');
         setCreateRouteLoading(false);
-        loadBaselineData(); // Refresh lists
+        loadBaselineData(); 
       } catch (err: unknown) {
         setCreateRouteLoading(false);
         let msg = 'Failed to create route.';
@@ -216,7 +206,6 @@ export const Transport: React.FC = () => {
     }, 2000);
   };
 
-  // Handle Transport Allocation with 2s Delay [1]
   const handleAllocateTransport = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -245,7 +234,7 @@ export const Transport: React.FC = () => {
         setSelectedRouteId('');
         setSelectedVehicleId('');
         setAllocateLoading(false);
-        loadBaselineData(); // Refresh lists
+        loadBaselineData();
       } catch (err: unknown) {
         setAllocateLoading(false);
         let msg = 'Failed to allocate transport.';
@@ -259,7 +248,6 @@ export const Transport: React.FC = () => {
     }, 2000);
   };
 
-  // Handle Cancel Allocation with 2s Delay [1]
   const handleCancelAllocation = (allocationId: string) => {
     setCancelLoadingId(allocationId);
 
@@ -270,7 +258,7 @@ export const Transport: React.FC = () => {
         setToastMessage('Student transport allocation cancelled successfully!');
         setToastOpen(true);
         setCancelLoadingId(null);
-        loadBaselineData(); // Refresh lists
+        loadBaselineData(); 
       } catch (err: unknown) {
         setCancelLoadingId(null);
         let msg = 'Failed to cancel allocation.';

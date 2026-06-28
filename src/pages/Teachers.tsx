@@ -152,7 +152,7 @@ export const Teachers: React.FC = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `http://localhost:5000/api/academic/classes/${classId}/subjects`,
+        `https://school-system-management-backend.vercel.app/api/academic/classes/${classId}/subjects`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },
