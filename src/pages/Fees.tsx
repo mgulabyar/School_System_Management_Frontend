@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/set-state-in-effect */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect, useCallback } from "react";
 import {
   Box,
@@ -23,8 +22,6 @@ import {
   FormControl,
   InputLabel,
   Divider,
-  useTheme,
-  useMediaQuery,
 } from "@mui/material";
 import axios from "axios";
 import { useCustomTheme } from "../context/ThemeContext";
@@ -70,21 +67,21 @@ interface DefaulterData {
 
 export const Fees: React.FC = () => {
   const { mode } = useCustomTheme();
-  const theme = useTheme();
+  // const theme = useTheme();
   const [activeTab, setActiveTab] = useState(0);
 
-  const isMobileView = useMediaQuery(theme.breakpoints.down("md"));
 
   const [classes, setClasses] = useState<ClassData[]>([]);
   const [defaulters, setDefaulters] = useState<DefaulterData[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
   const [defaultersLoading, setDefaultersLoading] = useState(false);
 
-  const [toastOpen, setToastOpen] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
-  const [toastSeverity, setToastSeverity] = useState<"success" | "error">(
+  const [, setToastOpen] = useState(false);
+  const [, setToastMessage] = useState("");
+  const [, setToastSeverity] = useState<"success" | "error">(
     "success",
   );
+
 
   const [structClassId, setStructClassId] = useState("");
   const [tuitionFee, setTuitionFee] = useState("");

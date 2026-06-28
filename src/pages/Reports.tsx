@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/set-state-in-effect */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect, useCallback } from 'react';
 import { 
   Box, Card, CardContent, Typography, Button, 
@@ -27,7 +26,7 @@ interface ReportRow {
 
 export const Reports: React.FC = () => {
   const { mode } = useCustomTheme();
-  const [classes, setClasses] = useState<{ _id: string; name: string }[]>([]);
+  const [, setClasses] = useState<{ _id: string; name: string }[]>([]);
   const [exams, setExams] = useState<{ _id: string; name: string }[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -36,7 +35,7 @@ export const Reports: React.FC = () => {
   const [toastSeverity, setToastSeverity] = useState<'success' | 'error'>('success');
 
   const [reportType, setReportType] = useState<'admissions' | 'staff' | 'fees' | 'exams' | ''>('');
-  const [filterClassId, setFilterClassId] = useState('');
+  // const [filterClassId, setFilterClassId] = useState('');
   const [filterMonth, setFilterMonth] = useState('');
   const [filterExamId, setFilterExamId] = useState('');
 

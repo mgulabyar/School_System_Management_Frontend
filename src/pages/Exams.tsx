@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect, useCallback } from 'react';
 import { 
   Box, Card, CardContent, Typography, TextField, Button, 
   Tabs, Tab, Table, TableBody, TableCell, TableContainer, 
   TableHead, TableRow, Paper, Alert, CircularProgress, Snackbar,
-  Select, MenuItem, FormControl, InputLabel, Divider, useTheme, useMediaQuery
+  Select, MenuItem, FormControl, InputLabel, Divider,
 } from '@mui/material';
 import axios from 'axios';
 import { useCustomTheme } from '../context/ThemeContext';
@@ -70,16 +69,15 @@ interface MeritData {
 
 export const Exams: React.FC = () => {
   const { mode } = useCustomTheme();
-  const theme = useTheme();
+  // const theme = useTheme();
   const [activeTab, setActiveTab] = useState(0);
 
-  const isMobileView = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [classes, setClasses] = useState<ClassData[]>([]);
   const [students, setStudents] = useState<StudentData[]>([]);
   const [subjects, setSubjects] = useState<SubjectData[]>([]);
   const [exams, setExams] = useState<{ _id: string; name: string; class: { _id: string } }[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
 
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');

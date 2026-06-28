@@ -1,5 +1,6 @@
 import React, { createContext, useState, useMemo, useContext, useEffect } from 'react';
 import { ThemeProvider, createTheme, type PaletteMode } from '@mui/material';
+import type { ThemeOptions } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { getDesignTokens } from '../theme/theme';
 
@@ -24,7 +25,10 @@ export const CustomThemeProvider: React.FC<{ children: React.ReactNode }> = ({ c
     setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
   };
 
-  const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+  const theme = useMemo(
+    () => createTheme(getDesignTokens(mode) as ThemeOptions),
+    [mode]
+  );
 
   return (
     <CustomThemeContext.Provider value={{ toggleTheme, mode }}>

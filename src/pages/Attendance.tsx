@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/set-state-in-effect */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import React, { useState, useEffect, useCallback } from "react";
 import {
   Box,
@@ -110,7 +110,7 @@ export const Attendance: React.FC = () => {
   const [studentsList, setStudentsList] = useState<StudentData[]>([]);
   const [teachersList, setTeachersList] = useState<TeacherData[]>([]);
   const [availableSections, setAvailableSections] = useState<Section[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastSeverity, setToastSeverity] = useState<"success" | "error">(
