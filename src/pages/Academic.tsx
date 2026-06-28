@@ -660,7 +660,7 @@ export const Academic: React.FC = () => {
                                 fontSize: "12px",
                                 textTransform: "none",
                                 fontFamily: '"Roboto", "Arial", sans-serif',
-                                minWidth: 60,
+                                // minWidth: 60,
                               }}
                             >
                               {classDeleteLoadingId === c._id ? (
