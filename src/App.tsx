@@ -44,9 +44,17 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/login"
-          element={!isAuthenticated ? <Login /> : <Navigate to="/" />}
-        />
+  path="/login"
+  element={
+    !isAuthenticated ? (
+      <DashboardLayout>
+        <Login />
+      </DashboardLayout>
+    ) : (
+      <Navigate to="/" />
+    )
+  }
+/>
 
         <Route
           path="/*"
