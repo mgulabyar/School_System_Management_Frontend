@@ -2640,7 +2640,7 @@ export const Exams: React.FC = () => {
                         fontWeight: 700,
                         color: "primary.main",
                         fontFamily: '"Roboto", "Arial", sans-serif',
-                        fontSize: "1.05rem",
+                        fontSize: "13px",
                       }}
                     >
                       Percentage: {reportCard.summary.percentage}
@@ -2984,8 +2984,8 @@ export const Exams: React.FC = () => {
                             <TableCell
                               align="right"
                               sx={{
-                                fontWeight: 600,
-                                fontSize: "12px",
+                                fontWeight: 700,
+                                fontSize: "13px",
                                 color: "primary.main",
                                 fontFamily: '"Roboto", "Arial", sans-serif',
                                 borderBottomColor: "divider",
