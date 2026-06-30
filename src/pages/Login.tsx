@@ -426,7 +426,7 @@ const themeTogglerStyles = {
 };
 
 const getLoginCardStyles = (mode: string) => ({
-  maxWidth: 420,
+  maxWidth: 400,
   width: "100%",
   borderRadius: "10px",
   bgcolor: "background.paper",
