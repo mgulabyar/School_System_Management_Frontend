@@ -1136,7 +1136,8 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               <SchoolIcon sx={{ fontSize: 24, color: "primary.main" }} />
               <Typography variant="h6" sx={logoTextStyles}>
-                CAMPUS ERP
+                {/* CAMPUS ERP */}
+                S_M System
               </Typography>
             </Box>
           </Box>
