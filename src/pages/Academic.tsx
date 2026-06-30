@@ -1,3 +1,4 @@
+
 // import React, { useState, useEffect, useCallback } from "react";
 // import {
 //   Box,
@@ -28,6 +29,7 @@
 // import { useCustomTheme } from "../context/ThemeContext";
 // import {
 //   getClasses,
+//   getSections, // Imported getSections API [1]
 //   createSection,
 //   createClass,
 //   createSubject,
@@ -62,6 +64,7 @@
 //   const [activeTab, setActiveTab] = useState(0);
 
 //   const [classes, setClasses] = useState<ClassData[]>([]);
+//   const [allSections, setAllSections] = useState<Section[]>([]); // System sections list state [1]
 //   const [subjects, setSubjects] = useState<SubjectData[]>([]);
 //   const [loading, setLoading] = useState(true);
 //   const [subjectsLoading, setSubjectsLoading] = useState(false);
@@ -86,6 +89,7 @@
 
 //   const [sectionName, setSectionName] = useState("");
 //   const [className, setClassName] = useState("");
+//   const [classSections, setClassSections] = useState<string[]>([]); // Selected sections state [1]
 
 //   const [subjectName, setSubjectName] = useState("");
 //   const [subjectCode, setSubjectCode] = useState("");
@@ -102,15 +106,18 @@
 //     string | null
 //   >(null);
 
-//   const fetchClasses = useCallback(async () => {
+//   // Fetch Classes & Sections simultaneously [1]
+//   const fetchClassesAndSections = useCallback(async () => {
 //     try {
 //       setLoading(true);
-//       const res = await getClasses();
-//       setClasses(res.data);
+//       const resClasses = await getClasses();
+//       const resSections = await getSections(); // Fetch all registered sections [1]
+//       setClasses(resClasses.data);
+//       setAllSections(resSections.data);
 //       setLoading(false);
 //     } catch (err: unknown) {
 //       setLoading(false);
-//       setError("Failed to fetch classes from server.");
+//       setError("Failed to fetch classes and sections from server.");
 
 //       console.error("--- ACADEMIC PAGE FETCH CLASSES FAILED ---");
 //       console.error(err);
@@ -137,10 +144,10 @@
 
 //   useEffect(() => {
 //     const timer = setTimeout(() => {
-//       fetchClasses();
+//       fetchClassesAndSections();
 //     }, 0);
 //     return () => clearTimeout(timer);
-//   }, [fetchClasses]);
+//   }, [fetchClassesAndSections]);
 
 //   useEffect(() => {
 //     if (selectedClassFilter) {
@@ -167,7 +174,7 @@
 //         setSuccess("Section created successfully!");
 //         setSectionName("");
 //         setSectionLoading(false);
-//         fetchClasses();
+//         fetchClassesAndSections();
 //       } catch (err: unknown) {
 //         setSectionLoading(false);
 //         let msg = "Failed to create section.";
@@ -191,11 +198,13 @@
 
 //     setTimeout(async () => {
 //       try {
-//         await createClass(className, []);
+//         // Updated to pass selected sections array to backend [1]
+//         await createClass(className, classSections); 
 //         setSuccess("Class created successfully!");
 //         setClassName("");
+//         setClassSections([]); // Reset dropdown selections [1]
 //         setClassLoading(false);
-//         fetchClasses();
+//         fetchClassesAndSections();
 //       } catch (err: unknown) {
 //         setClassLoading(false);
 //         let msg = "Failed to create class.";
@@ -248,7 +257,7 @@
 //         const res = await deleteClass(classId);
 //         setSuccess(res.message || "Class deleted successfully!");
 //         setClassDeleteLoadingId(null);
-//         fetchClasses();
+//         fetchClassesAndSections();
 //       } catch (err: unknown) {
 //         setClassDeleteLoadingId(null);
 //         let msg = "Failed to delete class.";
@@ -504,6 +513,57 @@
 //                       },
 //                     }}
 //                   />
+
+//                   {/* Multiple Sections Checkbox-style dropdown matching exact custom styling [1] */}
+//                   <FormControl size="small" fullWidth sx={{ mb: 2.5 }}>
+//                     <InputLabel
+//                       id="class-sections-label"
+//                       sx={{
+//                         fontFamily: '"Roboto", "Arial", sans-serif',
+//                         fontSize: "13px",
+//                         transform: "translate(14px, 11px) scale(1)",
+//                         "&.MuiInputLabel-shrink": {
+//                           transform: "translate(14px, -6px) scale(0.75)",
+//                         },
+//                       }}
+//                     >
+//                       Assign Sections
+//                     </InputLabel>
+//                     <Select
+//                       labelId="class-sections-label"
+//                       multiple
+//                       value={classSections}
+//                       onChange={(e) => setClassSections(typeof e.target.value === 'string' ? e.target.value.split(',') : e.target.value)}
+//                       renderValue={(selected) => (
+//                         allSections.filter(s => selected.includes(s._id)).map(s => s.name).join(', ')
+//                       )}
+//                       disabled={classLoading}
+//                       sx={{
+//                         height: 42,
+//                         borderRadius: "8px",
+//                         fontFamily: '"Roboto", "Arial", sans-serif',
+//                         fontSize: "13px",
+//                         "& .MuiSelect-select": {
+//                           paddingTop: "11px",
+//                           paddingBottom: "11px",
+//                         },
+//                       }}
+//                     >
+//                       {allSections.map((sec) => (
+//                         <MenuItem
+//                           key={sec._id}
+//                           value={sec._id}
+//                           sx={{
+//                             fontFamily: '"Roboto", "Arial", sans-serif',
+//                             fontSize: "13px",
+//                           }}
+//                         >
+//                           {sec.name}
+//                         </MenuItem>
+//                       ))}
+//                     </Select>
+//                   </FormControl>
+
 //                   <Button
 //                     type="submit"
 //                     variant="contained"
@@ -660,7 +720,6 @@
 //                                 fontSize: "12px",
 //                                 textTransform: "none",
 //                                 fontFamily: '"Roboto", "Arial", sans-serif',
-//                                 minWidth: 60,
 //                               }}
 //                             >
 //                               {classDeleteLoadingId === c._id ? (
@@ -956,7 +1015,7 @@
 //                 </Typography>
 
 //                 {!selectedClassFilter ? (
-//                   <Box sx={{ p: 4, textAlign: "center" }}>
+//                   <Box sx={{ p: 4, textAlign: 'center' }}>
 //                     <Typography
 //                       variant="body2"
 //                       color="text.secondary"
@@ -976,7 +1035,7 @@
 //                     <CircularProgress size={28} />
 //                   </Box>
 //                 ) : subjects.length === 0 ? (
-//                   <Box sx={{ p: 4, textAlign: "center" }}>
+//                   <Box sx={{ p: 4, textAlign: 'center' }}>
 //                     <Typography
 //                       variant="body2"
 //                       color="text.secondary"
@@ -1239,7 +1298,6 @@
 //   );
 // };
 
-
 import React, { useState, useEffect, useCallback } from "react";
 import {
   Box,
@@ -1270,7 +1328,7 @@ import axios from "axios";
 import { useCustomTheme } from "../context/ThemeContext";
 import {
   getClasses,
-  getSections, // Imported getSections API [1]
+  getSections,
   createSection,
   createClass,
   createSubject,
@@ -1305,7 +1363,7 @@ export const Academic: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   const [classes, setClasses] = useState<ClassData[]>([]);
-  const [allSections, setAllSections] = useState<Section[]>([]); // System sections list state [1]
+  const [allSections, setAllSections] = useState<Section[]>([]);
   const [subjects, setSubjects] = useState<SubjectData[]>([]);
   const [loading, setLoading] = useState(true);
   const [subjectsLoading, setSubjectsLoading] = useState(false);
@@ -1330,7 +1388,7 @@ export const Academic: React.FC = () => {
 
   const [sectionName, setSectionName] = useState("");
   const [className, setClassName] = useState("");
-  const [classSections, setClassSections] = useState<string[]>([]); // Selected sections state [1]
+  const [classSections, setClassSections] = useState<string[]>([]);
 
   const [subjectName, setSubjectName] = useState("");
   const [subjectCode, setSubjectCode] = useState("");
@@ -1347,22 +1405,18 @@ export const Academic: React.FC = () => {
     string | null
   >(null);
 
-  // Fetch Classes & Sections simultaneously [1]
   const fetchClassesAndSections = useCallback(async () => {
     try {
       setLoading(true);
       const resClasses = await getClasses();
-      const resSections = await getSections(); // Fetch all registered sections [1]
+      const resSections = await getSections();
       setClasses(resClasses.data);
       setAllSections(resSections.data);
       setLoading(false);
     } catch (err: unknown) {
       setLoading(false);
       setError("Failed to fetch classes and sections from server.");
-
-      console.error("--- ACADEMIC PAGE FETCH CLASSES FAILED ---");
       console.error(err);
-      console.error("-----------------------------------------");
     }
   }, [setError]);
 
@@ -1439,11 +1493,10 @@ export const Academic: React.FC = () => {
 
     setTimeout(async () => {
       try {
-        // Updated to pass selected sections array to backend [1]
-        await createClass(className, classSections); 
+        await createClass(className, classSections);
         setSuccess("Class created successfully!");
         setClassName("");
-        setClassSections([]); // Reset dropdown selections [1]
+        setClassSections([]);
         setClassLoading(false);
         fetchClassesAndSections();
       } catch (err: unknown) {
@@ -1535,7 +1588,7 @@ export const Academic: React.FC = () => {
   };
 
   return (
-   <Box
+    <Box
       sx={{
         "@keyframes pageSlideUp": {
           "0%": { opacity: 0, transform: "translateY(12px)" },
@@ -1633,6 +1686,11 @@ export const Academic: React.FC = () => {
                     : "none",
                 border:
                   mode === "dark" ? "1px solid #1F2937" : "1px solid #E2E8F0",
+                "&:hover": {
+                  transform: "none !important",
+                  borderColor: mode === "dark" ? "#1F2937 !important" : "#E2E8F0 !important",
+                  boxShadow: mode === "light" ? "0 1px 3px rgba(15, 23, 42, 0.04) !important" : "none !important",
+                },
               }}
             >
               <CardContent sx={{ p: 2.5 }}>
@@ -1711,6 +1769,11 @@ export const Academic: React.FC = () => {
                     : "none",
                 border:
                   mode === "dark" ? "1px solid #1F2937" : "1px solid #E2E8F0",
+                "&:hover": {
+                  transform: "none !important",
+                  borderColor: mode === "dark" ? "#1F2937 !important" : "#E2E8F0 !important",
+                  boxShadow: mode === "light" ? "0 1px 3px rgba(15, 23, 42, 0.04) !important" : "none !important",
+                },
               }}
             >
               <CardContent sx={{ p: 2.5 }}>
@@ -1755,7 +1818,6 @@ export const Academic: React.FC = () => {
                     }}
                   />
 
-                  {/* Multiple Sections Checkbox-style dropdown matching exact custom styling [1] */}
                   <FormControl size="small" fullWidth sx={{ mb: 2.5 }}>
                     <InputLabel
                       id="class-sections-label"
@@ -1840,6 +1902,11 @@ export const Academic: React.FC = () => {
               border:
                 mode === "dark" ? "1px solid #1F2937" : "1px solid #E2E8F0",
               p: 1,
+              "&:hover": {
+                transform: "none !important",
+                borderColor: mode === "dark" ? "#1F2937 !important" : "#E2E8F0 !important",
+                boxShadow: mode === "light" ? "0 1px 3px rgba(15, 23, 42, 0.04) !important" : "none !important",
+              },
             }}
           >
             <CardContent sx={{ p: 0 }}>
@@ -1961,6 +2028,13 @@ export const Academic: React.FC = () => {
                                 fontSize: "12px",
                                 textTransform: "none",
                                 fontFamily: '"Roboto", "Arial", sans-serif',
+                                minWidth: "auto",
+                                padding: 0,
+                                "&:hover": {
+                                  backgroundColor: "transparent !important",
+                                  color: "error.dark",
+                                  textDecoration: "underline",
+                                }
                               }}
                             >
                               {classDeleteLoadingId === c._id ? (
@@ -1996,6 +2070,11 @@ export const Academic: React.FC = () => {
                 mode === "light" ? "0 1px 3px rgba(15, 23, 42, 0.04)" : "none",
               border:
                 mode === "dark" ? "1px solid #1F2937" : "1px solid #E2E8F0",
+              "&:hover": {
+                transform: "none !important",
+                borderColor: mode === "dark" ? "#1F2937 !important" : "#E2E8F0 !important",
+                boxShadow: mode === "light" ? "0 1px 3px rgba(15, 23, 42, 0.04) !important" : "none !important",
+              },
             }}
           >
             <CardContent sx={{ p: 2.5 }}>
@@ -2152,6 +2231,11 @@ export const Academic: React.FC = () => {
                 border:
                   mode === "dark" ? "1px solid #1F2937" : "1px solid #E2E8F0",
                 p: 1,
+                "&:hover": {
+                  transform: "none !important",
+                  borderColor: mode === "dark" ? "#1F2937 !important" : "#E2E8F0 !important",
+                  boxShadow: mode === "light" ? "0 1px 3px rgba(15, 23, 42, 0.04) !important" : "none !important",
+                },
               }}
             >
               <CardContent
@@ -2239,6 +2323,11 @@ export const Academic: React.FC = () => {
                 border:
                   mode === "dark" ? "1px solid #1F2937" : "1px solid #E2E8F0",
                 p: 1,
+                "&:hover": {
+                  transform: "none !important",
+                  borderColor: mode === "dark" ? "#1F2937 !important" : "#E2E8F0 !important",
+                  boxShadow: mode === "light" ? "0 1px 3px rgba(15, 23, 42, 0.04) !important" : "none !important",
+                },
               }}
             >
               <CardContent sx={{ p: 0 }}>
@@ -2397,9 +2486,14 @@ export const Academic: React.FC = () => {
                                       fontWeight: 600,
                                       fontSize: "12px",
                                       textTransform: "none",
-                                      fontFamily:
-                                        '"Roboto", "Arial", sans-serif',
-                                      minWidth: 60,
+                                      fontFamily: '"Roboto", "Arial", sans-serif',
+                                      minWidth: "auto",
+                                      padding: 0,
+                                      "&:hover": {
+                                        backgroundColor: "transparent !important",
+                                        color: "error.dark",
+                                        textDecoration: "underline",
+                                      }
                                     }}
                                   >
                                     {subjectDeleteLoadingId === sub._id ? (
@@ -2442,6 +2536,11 @@ export const Academic: React.FC = () => {
                                 ? "0 1px 3px rgba(15, 23, 42, 0.04)"
                                 : "none",
                             bgcolor: "background.paper",
+                            "&:hover": {
+                              transform: "none !important",
+                              borderColor: mode === "dark" ? "#1F2937 !important" : "#E2E8F0 !important",
+                              boxShadow: mode === "light" ? "0 1px 3px rgba(15, 23, 42, 0.04) !important" : "none !important",
+                            }
                           }}
                         >
                           <Box
@@ -2499,7 +2598,7 @@ export const Academic: React.FC = () => {
                           >
                             <Button
                               size="small"
-                              variant="outlined"
+                              variant="text"
                               color="error"
                               onClick={() => handleDeleteSubject(sub._id)}
                               disabled={subjectDeleteLoadingId === sub._id}
@@ -2508,13 +2607,12 @@ export const Academic: React.FC = () => {
                                 fontSize: "12px",
                                 textTransform: "none",
                                 fontFamily: '"Roboto", "Arial", sans-serif',
-                                height: 30,
-                                borderRadius: "6px",
-                                minWidth: 70,
-                                borderWidth: "1px",
+                                minWidth: "auto",
+                                padding: 0,
                                 "&:hover": {
-                                  borderWidth: "1px",
-                                  bgcolor: "rgba(239, 68, 68, 0.04)"
+                                  backgroundColor: "transparent !important",
+                                  color: "error.dark",
+                                  textDecoration: "underline",
                                 }
                               }}
                             >
@@ -2538,4 +2636,3 @@ export const Academic: React.FC = () => {
     </Box>
   );
 };
-
