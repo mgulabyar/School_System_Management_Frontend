@@ -983,7 +983,7 @@ export const Dashboard: React.FC = () => {
                           fontWeight: 600,
                           color: "primary.main",
                           fontFamily: '"Roboto", "Arial", sans-serif',
-                          fontSize: "1.05rem",
+                          fontSize: "13px",
                         }}
                       >
                         {attendanceRate}%
