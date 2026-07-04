@@ -100,5 +100,3 @@ export const useAuth = () => {
   }
   return context;
 };
-
-// useAuth must be used within an authprovider,
