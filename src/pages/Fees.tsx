@@ -32,7 +32,6 @@ import {
   collectFee,
   voidInvoice,
 } from "../services/feeService";
-// ../../services./feesServices
 interface Section {
   _id: string;
   name: string;
