@@ -95,7 +95,7 @@ interface MeritData {
 export const Exams: React.FC = () => {
   const { mode } = useCustomTheme();
   const [activeTab, setActiveTab] = useState(0);
-
+// examination sytem
   const [classes, setClasses] = useState<ClassData[]>([]);
   const [students, setStudents] = useState<StudentData[]>([]);
   const [subjects, setSubjects] = useState<SubjectData[]>([]);
