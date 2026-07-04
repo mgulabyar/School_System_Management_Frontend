@@ -8,7 +8,7 @@ interface ThemeContextType {
   toggleTheme: () => void;
   mode: PaletteMode;
 }
-// them context final 
+
 const CustomThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const CustomThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
