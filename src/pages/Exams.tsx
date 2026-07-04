@@ -109,7 +109,7 @@ export const Exams: React.FC = () => {
   const [toastSeverity, setToastSeverity] = useState<"success" | "error">(
     "success",
   );
-// const examName, setExamName 
+
   const [examName, setExamName] = useState("");
   const [scheduleClassId, setScheduleClassId] = useState("");
 
