@@ -262,7 +262,7 @@ export const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-// is login page
+
   const isLoginPage = location.pathname === "/login";
   const showSidebar = isAuthenticated && !isLoginPage;
   const currentDrawerWidth = showSidebar ? DRAWER_WIDTH : 0;
